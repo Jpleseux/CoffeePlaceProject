@@ -1,0 +1,20 @@
+.message{
+    width: 100%;
+    padding: 1em;
+    border: 1px 1px solid #000;
+    margin:0 auto;
+    text-align: center;
+    margin-bottom: 2em;
+    border-radius: 5px;
+}
+
+.false{
+    color: #ffffff;
+    background-color: #CF2727;
+    border-color: #f5c6cb;
+}
+.true{
+    color: #ffffff;
+    background-color: #66AA46;
+    border-color: #07c513;
+}

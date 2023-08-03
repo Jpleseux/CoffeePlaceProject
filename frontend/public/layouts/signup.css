@@ -1,0 +1,144 @@
+.left-side-s {
+    background-color:#ffffff;
+    left: 0;
+}
+
+.left-side img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 70%;
+    width: 80%;
+    transform: translate(-50%, -50%); 
+}
+  
+.right-side-s{
+    right: 0;
+    background-color: #ffffff;
+}
+.form-login{
+    display: flex;
+    height: 100%;
+}
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+
+  form {
+    margin: 4%;
+    background-color: #ffffff;
+    display: flexbox;
+    padding: 3rem;
+    max-width: 90%;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-title {
+    font-weight: bold;
+    margin-bottom: 10%;
+    font-size: 600%;
+    font-weight: 600;
+    text-align: center;
+    color: #CFA57E;
+  }
+  .submit {
+    transition: ease-out 0.5s;
+    text-align: center;
+    display: block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-size: 0.875rem;
+    background: transparent;
+    line-height: .25rem;
+    font-weight: 500;
+    width: 60%;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    transform: translate(17%, 5%); 
+    border:1px #794028 solid;
+  }
+  .submit:hover{
+    color: white;
+    background-color: #CFA57E;
+  }
+  .submit:active{
+    transform: scale(0.9);
+  }
+  .forgot {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgb(0, 0, 0);
+    margin: 8px 0 14px 0;
+  }
+  
+  .forgot a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .forgot a:hover {
+    text-decoration: underline #794028;
+  }
+  .button{
+    background-color: #CFA57E;
+    text-align: center;
+    display: block;
+    padding: 2%;
+    margin: 2% 4%;
+    font-size: 0.875rem;
+    line-height: .25rem;
+    font-weight: 500;
+    width: 60%;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+  .button:hover{
+    box-shadow:2px 1px  2px #794028;
+  }
+  .options{
+    text-align: center;
+    padding: 2%;
+  }
+  span svg{
+    width: 10%;
+    height: 5%;
+  }
+  .container{
+    margin-left: auto;
+    margin-right: -28%; 
+  }
+  .options a{
+    text-decoration: none;
+    color: #794028;
+  }
+  .option-login {
+    text-align: center;
+    margin: auto;
+    margin-top: 3%;
+    padding: 20%;
+    right: 50%;
+    border-radius: 10px;
+    position: flex;
+    width: 50%;
+    height: 80%;
+    background-color: #cfa57e4c;
+    z-index: 999; 
+  }
