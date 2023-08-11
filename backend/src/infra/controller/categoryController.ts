@@ -15,10 +15,6 @@ export default class CategoryController {
           return { data: { msg: "Error while creating category" }, typeHttpResponse: 400 };
         }
       });
-<<<<<<< HEAD
-=======
-  
->>>>>>> origin/main
       categoryController.on("get", routerPrefix + "/getcategory/:id", async function (params: any, body: any) {
         try {
           const categoryGet = databaseFactory.createCategoryRepository();
@@ -59,4 +55,4 @@ export default class CategoryController {
       })
     }
   }
-  
+   

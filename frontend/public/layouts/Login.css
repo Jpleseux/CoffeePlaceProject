@@ -34,7 +34,7 @@ body, html {
     padding: 0;
   }
 
-  form {
+  .form-login-begin {
     margin: 4%;
     background-color: #ffffff;
     display: flexbox;
@@ -114,6 +114,7 @@ body, html {
     box-shadow:2px 1px  2px #794028;
   }
   .options{
+    margin-top: 10%;
     text-align: center;
     padding: 2%;
   }
@@ -128,4 +129,13 @@ body, html {
   .options a{
     text-decoration: none;
     color: #794028;
+  }
+  .options h3{
+    font-size: 90%;
+  }
+
+  @media (max-width: 760px) {
+    .form-login {
+      flex-direction: column;
+    }
   }

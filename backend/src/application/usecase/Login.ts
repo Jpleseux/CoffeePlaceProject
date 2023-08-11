@@ -11,7 +11,8 @@ export default class Login{
         if(await userObj.validatePassword(Input.password, userObj) ===true){
             const tokenGenerater = new tokenGenerate(process.env.SECRET)
             return{
-                token: tokenGenerater.sign(user)
+                token: tokenGenerater.sign(user),
+                user:userObj
             }
         }else{
             return false
@@ -20,6 +21,7 @@ export default class Login{
 }
 type Output = {
     token:string
+    user:object
 }
 
 type Input = {

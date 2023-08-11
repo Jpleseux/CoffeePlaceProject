@@ -1,5 +1,5 @@
 export default class Endereco{
-    constructor(public cidade: string,public estado:string, public rua:string, public bairro:string, readonly cep:string){
+    constructor(public city: string,public state:string, public street:string, public neighborhood:string, readonly cep:string){
 
     }
     async consultarCEP(cep: string){
@@ -19,7 +19,7 @@ export default class Endereco{
       }
 
     static async formatedEnderco(endereco:any){
-      const enderecoObj = new Endereco(endereco.cidade, endereco.estado, endereco.rua, endereco.bairro, endereco.cep);
+      const enderecoObj = new Endereco(endereco.city, endereco.state, endereco.street, endereco.neighborhood, endereco.cep);
 
       const isValidCpf = await enderecoObj.consultarCEP(endereco.cep);
 

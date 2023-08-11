@@ -30,3 +30,4 @@ function Message({msg, timers, type}:any){
     )
 }
 export default Message
+ 

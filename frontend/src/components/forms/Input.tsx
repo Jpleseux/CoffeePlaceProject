@@ -6,11 +6,13 @@ function Input({type, text, placeholder, name, value, handleOnChange}:InputInter
             <label htmlFor={name}>{text}</label>
 
             <input name={name} placeholder={placeholder} id={name} type={type} onChange={handleOnChange}
-            value={value}>
+            value={value}
+            required
+            >
 
             </input>
         </div>
     )
 }
- 
+  
 export default Input

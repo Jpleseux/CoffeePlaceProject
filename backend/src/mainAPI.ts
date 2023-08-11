@@ -4,7 +4,7 @@ import categoryController from "./infra/controller/categoryController";
 import databaseRepositoryFactory from "./infra/factory/databaseRepositoryFactory";
 import userController from "./infra/controller/userController";
 import useCaseFactory from "./infra/factory/useCaseFactory";
-const port:number = 3000;
+const port:number = 3001;
 const connection = new mongoosePromisse();
 connection.connect();
 

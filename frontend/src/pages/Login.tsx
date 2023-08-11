@@ -20,12 +20,17 @@ function Login() {
     const { name, value } = e.target;
     setUser((prevState) => ({ ...prevState, [name]: value }));
   }
-
+  
   async function submitUser(e: any) {
     e.preventDefault();
     const response = await userGateway?.login(user);
     setMessage(response);
-    await CookieFactory.cookieUtil(response.token)
+    await CookieFactory.cookieUtil("jwttoken", response.token)
+    const cookieInput = {nameUser: response.user.name, typeUser: response.user.field}
+    localStorage.setItem("avatar", response.user.avatar)
+    const Input = JSON.stringify(cookieInput)
+    console.log(Input)
+    await CookieFactory.cookieUtil("userData",Input );
     setTimeout(()=>{
       if(response.done ===true){
         navigate("/home")
@@ -40,7 +45,7 @@ function Login() {
       </div>
       <div className="split right-side">
       {message&&<Message msg={message.msg} timers={5000} type={message.done}/>}
-        <form onSubmit={submitUser}>
+        <form className="form-login-begin" onSubmit={submitUser}>
           <p className="form-title">Coffee Place</p>
             <div className="container">
               <Input
@@ -65,13 +70,13 @@ function Login() {
               <a href="#">Esqueceu sua senha, ou deseja redefinir sua conta?</a>
             </div>
             }
-          </form>
-          <div className="options">
+            <div className="options">
             <h3>Não tem uma conta, cadastre-se!!!</h3>
 
             <Link to="/signup"><button className="button">Cadastre-se</button></Link>
             <span><FcGoogle/></span>
           </div>
+          </form>
       </div>
     </div>
   );

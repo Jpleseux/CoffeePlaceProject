@@ -1,7 +1,6 @@
 import { Document } from "mongoose";
 
 export default interface userInterface extends Document{
-<<<<<<< HEAD
     name:{
         type:string,
         required:true
@@ -10,8 +9,6 @@ export default interface userInterface extends Document{
         type:number,
         required:true
     },
-=======
->>>>>>> origin/main
     email:{
         type:String,
         required:true
@@ -24,39 +21,46 @@ export default interface userInterface extends Document{
         type:String, 
         required:true
     }
-<<<<<<< HEAD
     indentification:{
         type:Object,
-=======
-    cpf:{
-        type:String,
->>>>>>> origin/main
         required:true
     },
     description:{
         type:String,
         required:true
     },
-    custonField:{
+    avatar:{
+        type:string,
+        required:false
+    },
+    field:{
         isAdmin:{
             type:boolean,
-            required:true
+            required:false
+        },
+        isSalesman:{
+            type:boolean,
+            required:false
+        },
+        isBuyer:{
+            type:Boolean,
+            required:false
         }
     },
     endereco:[{
-        cidade:{
+        city:{
             type:String,
             required:false
         },
-        estado:{
+        state:{
             type:String,
             required:false
         },
-        rua:{
+        street:{
             type:String,
             required:false
         },
-        bairro:{
+        neighborhood:{
             type:String,
             required:false
         },
@@ -66,3 +70,5 @@ export default interface userInterface extends Document{
         }
     }]
 }
+
+  

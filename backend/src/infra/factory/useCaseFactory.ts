@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import { verify } from "jsonwebtoken";
-=======
->>>>>>> origin/main
 import repositoryFactory from "../../application/factory/repositoryFactory";
 import userRepository from "../../application/repository/userRepository";
 import Login from "../../application/usecase/Login";
@@ -9,6 +6,7 @@ import checkEmail from "../../application/usecase/checkEmail";
 import signUp from "../../application/usecase/singUp";
 import User from "../../domain/entities/User";
 import databaseRepositoryFactory from "./databaseRepositoryFactory";
+import getUser from "../../application/usecase/GetUser";
 
 export default class useCaseFactory{
     constructor(readonly repositoryFactory:databaseRepositoryFactory) {
@@ -22,4 +20,8 @@ export default class useCaseFactory{
     async createLogin(){
         return await new Login(this.repositoryFactory.createUserRepository())
     }
+    async getUser(){
+        return await new getUser(this.repositoryFactory.createUserRepository())
+    }
 }
+  

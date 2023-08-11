@@ -1,0 +1,80 @@
+.nav-1{ 
+    background-color: #300E02;
+    padding: 15px 50px;
+    display: flex;
+    color: #ffffff;
+    justify-content: space-around;
+    align-items: center;
+}
+#logoUrl{
+    margin: auto;
+    margin-left: 0;
+}
+.nav-1 #logo{
+    color: #CFA57E;
+    width: 40px;
+    height: 40px;
+}
+.nav-1 a{
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 12px;
+    transition: .5s;
+}
+.nav-1 a:hover{
+    color: #CFA57E;
+}
+#logoUrl p{
+    width: 70%;
+    font-size: 70%;
+}
+.form-search button{
+    border-radius: 20px;
+    padding: 4%;
+    background-color: #300E02;
+    color: #ffffff;
+}
+.search-input{
+    background-color: #fff;
+    padding: 4%;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    line-height: .25rem;
+    width: 40%;
+    height: 10%;
+    border-radius: 2rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.nav-2{
+    margin-top: .2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #300E02;
+    display: flex;
+    color: #ffffff;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-2 #logo{
+    gap: 2%;
+    color: #CFA57E;
+    font-size: 140%;
+}
+.nav-2 a{
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 12px;
+    transition: .5s;
+}
+.nav-2 a:hover{
+    color: #CFA57E;
+}
+.nav-2 p{
+    width: 50%;
+    font-size: 100%;
+}
+.avatar{
+    border-radius: 20px;
+    width: 14%;
+    margin-left: 10%;
+}

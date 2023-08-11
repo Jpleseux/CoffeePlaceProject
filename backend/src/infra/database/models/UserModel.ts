@@ -2,7 +2,6 @@ import mongoose,{ Schema } from "mongoose";
 import userInterface from "../interface/userInterface";
 
 const userSchema = new Schema<userInterface>({
-<<<<<<< HEAD
     name:{
         type:String,
         required:true
@@ -11,8 +10,6 @@ const userSchema = new Schema<userInterface>({
         type:Number,
         required:true
     },
-=======
->>>>>>> origin/main
     email:{
         type:String,
         required:true
@@ -25,40 +22,47 @@ const userSchema = new Schema<userInterface>({
         type:String,
         required:true
     },
-<<<<<<< HEAD
     indentification:{
         type:Object,
-=======
-    cpf:{
-        type:String,
->>>>>>> origin/main
         required:true
     },
     description:{
         type:String,
         required:true
     },
-    custonField:{
+    avatar:{
+        type:String,
+        required:false
+    },
+    field:{
         isAdmin:{
             type:Boolean,
-            required:true
+            required:false
+        },
+        isSalesman:{
+            type:Boolean,
+            required:false
+        },
+        isBuyer:{
+            type:Boolean,
+            required:false
         }
     },
     endereco:{
         _id:false,
-        cidade:{
+        city:{
             type:String,
             required:false
         },
-        estado:{
+        state:{
             type:String,
             required:false
         },
-        rua:{
+        street:{
             type:String,
             required:false
         },
-        bairro:{
+        neighborhood:{
             type:String,
             required:false
         },

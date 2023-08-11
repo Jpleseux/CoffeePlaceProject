@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-<<<<<<< HEAD
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Login.tsx'
 import SignUp from './pages/SignUp.tsx'
@@ -12,23 +11,17 @@ import { GatewayContext } from './gateway/gatewayContext';
 import CookieFactory from './utils/CookieFactory.tsx'
 import {useEffect} from "react"
 import Cookies from 'js-cookie'
+import NotFound from './components/404/NotFound.tsx'
 
-function ProtectedRoute(Component:any) {
+function ProtectedRouteAdmin(Component:any) {
   return function WithProtection(props:any) {
     const gatewayContext = React.useContext(GatewayContext);
 
     useEffect(() => {
       async function checkAuthentication() {
-        const response = await CookieFactory.verifyToken(
-          Cookies.get("jwttoken"),
-          gatewayContext
-        );
+        
+        Cookies.get("jwttoken")
  
-        if (response.done === false) {
-          setTimeout(() => {
-            window.location.href = '/'; 
-          }, 5000);
-        }
       }
 
       checkAuthentication();
@@ -36,7 +29,7 @@ function ProtectedRoute(Component:any) {
     return <Component {...props} />;
   };
 }
-const ProtectedRoutes = {Home: ProtectedRoute(Home)}
+const ProtectedRoutes = {Home: ProtectedRouteAdmin(Home)}
 
 const router = createBrowserRouter([
   {
@@ -45,7 +38,7 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/home",
-        element: <ProtectedRoutes.Home/>
+        element: <Home/>
       },
       {
         path: "/",
@@ -54,6 +47,10 @@ const router = createBrowserRouter([
       {
         path:"/signup",
         element:<SignUp/>
+      },
+      {
+        path:"*",
+        element:<NotFound/>
       }
     ]
   }
@@ -64,11 +61,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <GatewayProvider >
       <RouterProvider router={router} />
     </GatewayProvider>
-=======
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
->>>>>>> origin/main
   </React.StrictMode>,
 )
