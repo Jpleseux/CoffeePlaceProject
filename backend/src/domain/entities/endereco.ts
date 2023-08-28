@@ -17,15 +17,15 @@ export default class Endereco{
         return false;
       }
       }
-
+   
     static async formatedEnderco(endereco:any){
       const enderecoObj = new Endereco(endereco.city, endereco.state, endereco.street, endereco.neighborhood, endereco.cep);
 
-      const isValidCpf = await enderecoObj.consultarCEP(endereco.cep);
+      // const isValidCep = await enderecoObj.consultarCEP(endereco.cep);
 
-      if(isValidCpf ===false){
-        return false;
-      }
+      // if(isValidCep ===false){
+      //   return false;
+      // }
       return enderecoObj;
     }
 }

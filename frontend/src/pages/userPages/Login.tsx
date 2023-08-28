@@ -1,12 +1,13 @@
-import Input from "../components/forms/Input";
+import Input from "../../components/forms/Input";
 import { useState, useContext } from "react";
-import { GatewayContext } from "../gateway/gatewayContext";
-import Message from "../components/interface/Message";
-import CookieFactory from "../utils/CookieFactory";
+import { GatewayContext } from "../../gateway/gatewayContext";
+import Message from "../../components/interface/Message";
+import CookieFactory from "../../utils/CookieFactory";
 import { useNavigate } from "react-router-dom";
-import "../../public/layouts/Login.css"
+import "../../../public/layouts/Login.css"
 import {FcGoogle} from "react-icons/fc"
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Login() {
   const gatewayContext = useContext(GatewayContext);
@@ -23,13 +24,20 @@ function Login() {
   
   async function submitUser(e: any) {
     e.preventDefault();
+    if(Cookies.get("userData")){
+      Cookies.remove("userData")
+    }
+    if(Cookies.get("jwttoken")){
+      Cookies.remove("jwttoken")
+    }
+    console.log(user)
     const response = await userGateway?.login(user);
+    console.log(response)
     setMessage(response);
     await CookieFactory.cookieUtil("jwttoken", response.token)
     const cookieInput = {nameUser: response.user.name, typeUser: response.user.field}
     localStorage.setItem("avatar", response.user.avatar)
     const Input = JSON.stringify(cookieInput)
-    console.log(Input)
     await CookieFactory.cookieUtil("userData",Input );
     setTimeout(()=>{
       if(response.done ===true){

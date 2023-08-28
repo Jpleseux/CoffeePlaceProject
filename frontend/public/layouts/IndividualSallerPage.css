@@ -1,0 +1,69 @@
+.contact-card {
+    z-index: 90;
+    margin-top: 2%;
+    margin-left: 40%;
+    padding: 3%;
+    width: 59%;
+    background-color: #EDE2D3;
+    position: absolute;
+}
+
+.contact-card img {
+    margin-right: 2%;
+    border-radius: 160px;
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 3%;
+}
+.contact-card h1,
+.contact-card p {
+    padding: .2%;
+    margin-right: 20%;
+    text-align: right;
+}
+.contact-card button{
+    margin-top: 1%;
+    margin-left: 60%;
+}
+.sidebar {
+    width: 12%;
+    background-color: #EDE2D3;
+    color: black;
+    top: 0;
+    height: 80%;
+    padding: 20px;
+}
+
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.nav-links li{
+    background-color: #E1CEB3;
+    padding: 8%;
+    border-radius: 30%;
+    margin-bottom:40% ;
+}
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+@media (max-width: 760px) {
+    .contact-card button{
+        margin-left: 40%;
+    }
+}
+#buy{
+    background-color: #66AA46;
+}

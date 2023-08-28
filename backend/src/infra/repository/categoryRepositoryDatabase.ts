@@ -9,7 +9,7 @@ export default class categoryRepositoryDatabase implements categoryRepository{
     async getOne(idCategory: String): Promise<category | {msg:String}> {
         const response = await categoryModel.findById(idCategory);
         if(!response){
-            return {msg:"Id não encontrado no banco de dados"}
+            return {msg:"Usuario não encontrado no banco de dados"}
         }
         return new category(response.descriptionCategory, response.nameCategory, response._id);
     }; 

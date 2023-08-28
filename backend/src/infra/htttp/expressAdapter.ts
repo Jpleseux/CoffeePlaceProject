@@ -27,7 +27,6 @@ export default class expressAdapter implements httpServer{
     }; 
     on(method: httpMethods, url: String, callBack: Function, middleware?:any): void {
         if(middleware){
-            console.log(method, url, callBack, middleware)
             this.app[method](url,middleware, async function (req:Request, res:Response) {
                 try {
                     const output = await callBack(req.params, req.body, req.headers);

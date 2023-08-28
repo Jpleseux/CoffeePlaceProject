@@ -1,7 +1,9 @@
 import repositoryFactory from "../../application/factory/repositoryFactory";
 import categoryRepository from "../../application/repository/categoryRepository";
+import productRepository from "../../application/repository/productRepository";
 import userRepository from "../../application/repository/userRepository";
 import categoryRepositoryDatabase from "../repository/categoryRepositoryDatabase";
+import productRepositoryDatabase from "../repository/productRepositoryDatabase";
 import userRepositoryDatabase from "../repository/userRepositoryDatabase";
 
 export default class databaseRepositoryFactory implements repositoryFactory{
@@ -11,4 +13,7 @@ export default class databaseRepositoryFactory implements repositoryFactory{
     createUserRepository(): userRepository {
         return new userRepositoryDatabase();
     };
+    createProductRepository(): productRepository {
+        return new productRepositoryDatabase();
+    }
 }

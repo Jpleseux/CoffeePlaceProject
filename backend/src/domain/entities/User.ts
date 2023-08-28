@@ -23,18 +23,20 @@ export default class User{
                 }
             }
         }    
-        if(await Endereco.formatedEnderco(endereco) === false){
-            return {msg:"Invalid CEP", done:false}
-        }
+        const formatedName = name.trim().replace(/\s+/g, ' ');
+        // if(await Endereco.formatedEnderco(endereco) === false){
+        //     return {msg:"Invalid CEP", done:false}
+        // }
         const passwordObj = await PasswordGenerate.create(password);
 
-        const user = await new User(name,age,await Email.isValid(email),passwordObj.hash, passwordObj.salt , indentification,description, field,await Endereco.formatedEnderco(endereco), avatar );
+        const user = await new User(formatedName,age,await Email.isValid(email),passwordObj.hash, passwordObj.salt , indentification,description, field,await Endereco.formatedEnderco(endereco), avatar );
         if(await Item.validateItem(user) ===false) return {msg:"Dado não válido", done:false};
 
         return {user, done: true}
     }
     static async restore(name:string, age:number,email:string, password:string,salt:string, indentification:any, description:string, field: any,endereco:any, avatar:string){
-        if(await Email.isValid(email) ===false) return {msg:"Invalid Email", done:false};
+        if (await Email.isValid (email) ===false) return {msg:"Invalid Email", done:false};
+        if(await Item.validateItem(endereco) ===false) return {msg:"Dado não válido", done:false};
         for(var obj in indentification){
             if(obj ==="cpf") {
                 if(await CpfValidate.validateCpf(indentification[obj])===false){
@@ -47,9 +49,9 @@ export default class User{
                 }
             }
         }  
-        if(await Endereco.formatedEnderco(endereco) === false){
-            return {msg:"Invalid CEP", done:false}
-        }
+        // if(await Endereco.formatedEnderco(endereco) === false){
+        //     return {msg:"Invalid CEP", done:false}
+        // }
         const user = await new User(name, age, await Email.isValid(email),password, salt , indentification,description, field,await Endereco.formatedEnderco(endereco), avatar );
 
         

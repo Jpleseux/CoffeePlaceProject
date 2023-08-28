@@ -27,7 +27,7 @@ export default class Item{
                 if(response ===false) errors.push(item);
             }
             if(errors.length >0){
-                return false;
+                return {itens: errors, done:false};
             }
             return true;
         }

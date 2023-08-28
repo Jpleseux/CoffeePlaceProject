@@ -10,10 +10,10 @@ import Cookies from "js-cookie"
 import CookieFactory from "../../utils/CookieFactory"
 import { GatewayContext } from "../../gateway/gatewayContext"
 import {PiListFill} from "react-icons/pi"
-
+ 
 function NavBar(){
     const [logged,setLogged ] = useState(false)
-    const excludeRoutes = ["/signup", "/"]
+    const excludeRoutes = ["/signup", ]
 
     const [show, setShow] = useState(false)
     const [search, setSearch] =useState({})
@@ -36,12 +36,11 @@ function NavBar(){
     async function verifyToken() {
         const userResponse = await Cookies.get("userData"); 
         const response = await CookieFactory.verifyToken(Cookies.get("jwttoken"), gatewayContext);
-      
+        console.log(Cookies.get("userData"))
         if (response.done === false) {
           setLogged(false);
-        } else if (response.done === true) {
+        } else{
           setLogged(true);
-          console.log(userResponse);
         //   @ts-ignore
           const userDataObj = JSON.parse(userResponse);
           setUser(userDataObj);
@@ -49,8 +48,10 @@ function NavBar(){
       }
       
       useEffect(() => {
-        verifyToken();
-      }, []);
+        setTimeout(()=>{
+            verifyToken();
+        }, 5000)
+      },[]);
 
     return(
         <div >
@@ -85,10 +86,9 @@ function NavBar(){
             }
             {logged === true &&
                 <div className="user-dash">
+                    <img className="avatar" src={localStorage.getItem("avatar")||"../../public/images/user.png"} alt="avatar" />
                     {/* @ts-ignore */}
-                    <img className="avatar" src={localStorage.getItem("avatar")} alt="avatar" />
-                    {/* @ts-ignore */}
-                    <p>Ola {user.nameUser}</p>
+                    <p>Olá: {user.nameUser}</p>
                 </div>
             }
         </nav>

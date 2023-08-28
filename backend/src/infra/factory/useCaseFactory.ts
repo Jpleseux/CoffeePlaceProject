@@ -23,5 +23,8 @@ export default class useCaseFactory{
     async getUser(){
         return await new getUser(this.repositoryFactory.createUserRepository())
     }
+    async getUserByName(){
+        return await new getUser(this.repositoryFactory.createUserRepository())
+    }
 }
   

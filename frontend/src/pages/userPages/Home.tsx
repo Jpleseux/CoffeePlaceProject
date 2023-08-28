@@ -1,5 +1,5 @@
 import {useState } from "react";
-import Message from "../components/interface/Message";
+import Message from "../../components/interface/Message";
 function Home(){
 
     const [message, setMessage] = useState<string | null>(null);

@@ -1,0 +1,11 @@
+.Product-form-create{
+    border-radius: 10px;
+    display: flex;
+    background-color: #EDE2D3;
+    margin: 2% 8% 0% 8%;
+    padding: 0.5%; 
+    flex-direction: column;
+}
+.Product-form-create h1{
+    color: #4B1F0E;
+}

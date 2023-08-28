@@ -15,7 +15,19 @@ export default class fetchAdapter implements httpClient{
             const response = await fetch(`${url}/${id}`);
             return await response.json()
         }
-        const response =  await fetch(url);
+        else{
+            const response =  await fetch(url);
+            console.log("line 2")
+            return await response.json()
+        }
+    }
+    async delete(url: string, id: string): Promise<any> {
+        const response = await fetch(`${url}/${id}`,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
         return await response.json()
     }
 } 

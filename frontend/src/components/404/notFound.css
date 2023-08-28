@@ -1,4 +1,9 @@
 .not-found{
     background-color: #CFA57E;
-    height: 500px;
+    padding: 23%;
+}
+@media (max-width: 860px){
+    .not-found{
+        padding: 35%;
+    }
 }

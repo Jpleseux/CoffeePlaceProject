@@ -1,4 +1,3 @@
-import { Response } from 'express';
 import repositoryFactory from "../../application/factory/repositoryFactory";
 import Email from "../../domain/entities/Email";
 import User from "../../domain/entities/User";
@@ -12,7 +11,6 @@ const routerPrefix = "/users"
 export default class userController{
     constructor(repositoryFactory: useCaseFactory, userController: httpServer){
         userController.on("post",routerPrefix+"/signup", async function (params:any, body:any) {
-            console.log(body)
             try {      
                 if(await Item.validateItem(body) === false){
                     return {data:{msg:"Existe um dado invalido cadastre tudo o necesario", done:false}, typeHttpResponse:400};
@@ -28,9 +26,9 @@ export default class userController{
                 if(user.done ===false){
                     return {data:user, typeHttpResponse:400}
                 }
-                await signUp.execute(user.user);
+                const response = await signUp.execute(user.user);
                 
-                return {data:{msg:"Creation success",  done:true}, typeHttpResponse:201}
+                return {data:{msg:"Creation success",token:response.token,  done:true}, typeHttpResponse:201}
             } catch (error) {
                 return {data:{msg:"Error while creating User"+error,  done:false}, typeHttpResponse:400};
             };
@@ -73,13 +71,28 @@ export default class userController{
                 const email = params.email;
                 const getUser= await repositoryFactory.getUser();
     
-                const data = await getUser.execute(email);
+                const data = await getUser.getUserByEmail(email);
     
                 if(data.done === false) return {data: {msg: "Invalid request", done:false}, typeHttpResponse:400}
+
+                if(!data) return {data: {msg: "Usuario não encontrado", done:false}, typeHttpResponse: 400}
 
                 return {data:{msg:"success",done:true, user:data}, typeHttpResponse:200}
             } catch (error) {
                 return {data:{msg:"bad request",done:false}, typeHttpResponse:400}
+            }
+        })
+        userController.on("get", routerPrefix+"/getuserbyname/:name",async function(params:any, body:any) {
+            try {
+                
+                const name = params.name;
+                const getUser = await repositoryFactory.getUserByName();
+                const data = await getUser.getUserByName(name);
+                if(data.done === false) return {data: {msg: "Invalid request", done:false}, typeHttpResponse:400}
+
+                return {data:{msg:"success",done:true, user:data}, typeHttpResponse:200}
+            } catch (error) {
+                return {data: {msg:"Erro enquanto encontrava o usuario pelo nome "+error, done:false}, typeHttpResponse: 400}
             }
         })
     }

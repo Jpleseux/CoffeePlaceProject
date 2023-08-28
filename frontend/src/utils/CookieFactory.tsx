@@ -5,9 +5,8 @@ export default class CookieFactory {
     const isCookieExist = Cookies.get(nameCookie); 
     if (!isCookieExist) {
       const expirationTime = 30;
-
       const expirationDate = new Date();
-      expirationDate.setTime(expirationDate.getTime() + expirationTime * 60 * 1000);
+      expirationDate.setTime(expirationDate.getTime() + expirationTime * 60 * 5000);
         
       Cookies.set(nameCookie, data, { expires: expirationDate });
     }

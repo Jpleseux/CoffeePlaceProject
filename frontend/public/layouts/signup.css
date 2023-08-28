@@ -150,7 +150,7 @@ span svg{
 .options a{
   text-decoration: none;
   color: #794028;
-}
+} 
 .option-login {
   position: static;
   text-align: center;
@@ -417,7 +417,7 @@ input[type="date"]{
 .bio-form{
   width: 80%;
 }
-textarea{
+.textarea-sign-up{
   margin-top: -40px;
   padding: 2%;
   border-radius: 10px;
@@ -474,6 +474,7 @@ textarea{
     font-size: 200%;
   }
 .form-login {
+  z-index: 9;
   flex-direction: column;
 }
 .option-login{

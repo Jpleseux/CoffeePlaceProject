@@ -3,10 +3,14 @@ import userRepository from "../repository/userRepository";
 
 export default class Login{
     constructor(readonly userRepository:userRepository){
-    }
+    } 
 
     async execute(Input:Input):Promise<Output| boolean>{
         const user = await this.userRepository.get(Input.email);
+        console.log(user)
+        if(!user){
+            return false
+        }
         const userObj = user.user
         if(await userObj.validatePassword(Input.password, userObj) ===true){
             const tokenGenerater = new tokenGenerate(process.env.SECRET)
@@ -18,7 +22,7 @@ export default class Login{
             return false
         }
     }
-}
+} 
 type Output = {
     token:string
     user:object
