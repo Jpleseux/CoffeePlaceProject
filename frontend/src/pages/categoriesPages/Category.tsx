@@ -7,11 +7,18 @@ import { Link } from "react-router-dom";
 function Category(){
     const gatewayContext = useContext(GatewayContext)
     const categoryGateway = gatewayContext?.categoryGateway;
+<<<<<<< HEAD
     const [category, setCategory] = useState({})
     const [message, setMessage] = useState({msg:String,done:Boolean})
     const [isSubmitting, setIsSubmitting] = useState(false)
     async function submit(e:any) {
         setIsSubmitting(true)
+=======
+
+    const [category, setCategory] = useState({})
+    const [message, setMessage] = useState({msg:String,done:Boolean})
+    async function submit(e:any) {
+>>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
         e.preventDefault();
         const response = await categoryGateway?.save(category);
         setMessage(response)
@@ -37,8 +44,12 @@ function Category(){
                <div className="buttons">
                     <Link to="/home"><button id="back-cg" className="button-back">Voltar para pagina inicial</button>
 </Link>
+<<<<<<< HEAD
                     <button className="button-next" type="submit" disabled={isSubmitting}>        {isSubmitting ? 'Enviando...' : 'Enviar'}
                     </button>
+=======
+                    <button className="button-next" type="submit">cadastrar</button>
+>>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
                </div>
             </form>
         </div>

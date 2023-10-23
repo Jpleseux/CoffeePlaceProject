@@ -1,5 +1,6 @@
 import "../../../public/layouts/ProductForm.css"
 import Input from "../../components/forms/Input"
+<<<<<<< HEAD
 import { useEffect, useState, useContext } from "react"
 import Cookies from "js-cookie"
 import { Link } from "react-router-dom"
@@ -80,11 +81,23 @@ function ProductForm(){
         }
         reader.readAsDataURL(file);
     }
+=======
+
+function ProductForm(){
+
+    async function Submit(e:any){
+
+    }
+
+    async function handleOnChange(e:any) {
+        
+>>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
     }
 
     return(
         <div className="Product-form-create">
             <h1>Cadastro de Produtos</h1>
+<<<<<<< HEAD
             <Link to={`/saller/individual/${saller.nameUser}`}>
                 <button className="button-back">Voltar pagina de vendedor</button>
             </Link>
@@ -118,6 +131,10 @@ function ProductForm(){
  
                 </div>
                 <button className="button-next" disabled={isSubmitting}>Cadastrar</button>
+=======
+            <form onSubmit={Submit}>
+                <Input name="nameProduct" type="text" handleOnChange={handleOnChange} placeholder="Nome do produto"/>
+>>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
             </form>
         </div>
     )

@@ -9,7 +9,6 @@ const routerPrefix = "/users"
 export default class userController{
     constructor(repositoryFactory: useCaseFactory, userController: httpServer){
         userController.on("post",routerPrefix+"/signup", async function (params:any, body:any) {
-            console.log(body)
             try {      
                 if((await Item.validateItem(body)).done !== true){
                     return {data:{msg:"Existe um dado invalido cadastre tudo o necesario", done:false}, typeHttpResponse:400};

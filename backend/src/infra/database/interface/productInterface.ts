@@ -7,9 +7,13 @@ export default interface productInterface extends Document{
     productAvaliation?:number,
     productValue: number,
     idCategory?: String,
+<<<<<<< HEAD
     imageProduct:String,
     amount:number
     nameSalesman?:String,
+=======
+    idSalesman?:String,
+>>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
     idBuyer?:String,
     isRecomended?:Boolean
 }

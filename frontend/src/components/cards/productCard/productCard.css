@@ -130,7 +130,7 @@
   .button-edit:hover {
     background: #66AA46;
   }
-  .button-edit:active{
+  .button-edit:active{ 
     border: 1px solid #66AA46;
   }
 
