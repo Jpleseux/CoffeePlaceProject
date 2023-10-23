@@ -12,7 +12,7 @@
 }
 .nav-1 #logo{
     color: #CFA57E;
-    width: 40px;
+    width: 20px;
     height: 40px;
 }
 .nav-1 a{
@@ -47,23 +47,30 @@
 }
 .nav-2{
     margin-top: .2%;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: .1%;
+    padding-right: .2%;
     background-color: #300E02;
     display: flex;
     color: #ffffff;
     justify-content: space-around;
     align-items: center;
 }
+.nav-2 #especial {
+    font-size: 14px; 
+    width: 30%;
+    flex-direction: row;
+}
+
 .nav-2 #logo{
     gap: 2%;
     color: #CFA57E;
     font-size: 140%;
 }
 .nav-2 a{
+    margin-left: 50%;
+    margin: 12px 8px;
     color: #FFFFFF;
     text-decoration: none;
-    margin: 12px;
     transition: .5s;
 }
 .nav-2 a:hover{
@@ -73,8 +80,22 @@
     width: 50%;
     font-size: 100%;
 }
+.nav-2 .notification-badge {
+    background-color: rgba(255, 0, 0, 0.729);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 50%;
+    position: relative;
+    top: -10px;
+    right: -215px;
+    font-size: 15px;
+}
+
 .avatar{
     border-radius: 20px;
-    width: 14%;
-    margin-left: 10%;
+    width: 8%;
+    margin-left: 20%;
+}
+.user-dash p{
+    font-size: 80%;
 }

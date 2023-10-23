@@ -1,0 +1,124 @@
+.IndexChat {
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Alterado para posição fixa */
+  top: 30%; 
+  z-index: 999999;
+  margin-left: 35%; 
+}
+.input-container {
+  z-index: 999;
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+.input-container button {
+  display: inline-flex;
+  position: flex;
+  z-index: 999;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.body-chat {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.bubble {
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin: 2%;
+  max-width: 80%;
+}
+
+.bubble.sender {
+  background-color: #e6f7ff;
+  align-self: flex-start;
+}
+
+.bubble.receiver {
+  background-color: #f0f0f0;
+  align-self: flex-end;
+}
+.body-msgs form {
+border: 1px solid #ccc;
+padding: 20px;
+margin-bottom: 10px;
+border-radius: 10px;
+}
+
+.body-msgs h1 {
+font-size: 1.2em;
+margin-bottom: 10px;
+}
+
+.body-msgs p {
+margin: 5px 0;
+}
+
+.body-msgs img {
+max-width: 100px;
+height: auto;
+}
+
+.body-msgs button {
+padding: 10px 20px;
+margin-right: 10px;
+cursor: pointer;
+border: none;
+border-radius: 5px;
+}
+
+.body-msgs button:hover {
+background-color: #ddd;
+}
+
+.body-msgs button.confirm {
+background-color: #28a745;
+color: white;
+}
+
+.body-msgs button.cancel {
+background-color: #dc3545;
+color: white;
+}
+.finished-order .input-container{
+width: 30%;
+}
+.finished-order {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  margin-left: 2%;
+  position: relative; 
+  z-index: 999; 
+}
+
+.finished-order .button-next {
+font-size: 80%;
+width: 10%;
+z-index: 997;
+margin-right: 0; 
+}
+.chatIndexLocation .card{
+  margin-top: 2%;
+}

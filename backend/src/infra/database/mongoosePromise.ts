@@ -6,10 +6,11 @@ export default class mongoosePromisse implements databaseConnection{
         try {
             await mongoose.set("strictQuery", true);
 
-            await mongoose.connect("mongodb+srv://joaopleseux:mm24~~92H@cluster0.hq2z8.mongodb.net/")  ;
-            console.log("Connection success");
+            await mongoose.connect("mongodb://0.0.0.0:27017/Coffeeplace");
+
+            console.log("conncetion success with localhost");
         } catch (error) {
-            console.log("Connection failed:"+ error);
+            console.log(error)
         }
     }
 }

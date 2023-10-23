@@ -9,6 +9,10 @@ export default interface userInterface extends Document{
         type:number,
         required:true
     },
+    isPremium:{
+        type:Boolean,
+        required:true,
+    }
     email:{
         type:String,
         required:true

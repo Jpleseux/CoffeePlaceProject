@@ -1,7 +1,5 @@
-import { useLocation } from "react-router"
 import "./navbar.css"
 import { Link } from "react-router-dom"
-import {BiSearchAlt} from "react-icons/bi"
 import {FaUser, FaBookmark} from "react-icons/fa"
 import {BsTelephoneFill} from "react-icons/bs"
 import {useState} from "react"
@@ -9,74 +7,73 @@ import { useEffect, useContext } from "react"
 import Cookies from "js-cookie"
 import CookieFactory from "../../utils/CookieFactory"
 import { GatewayContext } from "../../gateway/gatewayContext"
-import {PiListFill} from "react-icons/pi"
-
+import {MdWorkspacePremium} from "react-icons/md"
 function NavBar(){
     const [logged,setLogged ] = useState(false)
-    const excludeRoutes = ["/signup", "/"]
+    const excludeRoutes = ["/signup", ]
 
-    const [show, setShow] = useState(false)
-    const [search, setSearch] =useState({})
     const [user, setUser] = useState({})
+    const [notification,setNotification] = useState<any[]|undefined>([])
+    const [newNotification, setNewNotification]= useState(0)
     if(excludeRoutes.includes(location.pathname)){
         return null
     }
 
-    async function handleOnSearch(e:any) {
-        const { name, value } = e.target;
-        setSearch((prevState) => ({ ...prevState, [name]: value }));
-    }
-    function submit(e:any) {
-        e.preventDefault()
-
-        console.log(search)
-    }
     const gatewayContext = useContext(GatewayContext);
-
-    async function verifyToken() {
-        const userResponse = await Cookies.get("userData"); 
-        const response = await CookieFactory.verifyToken(Cookies.get("jwttoken"), gatewayContext);
-      
-        if (response.done === false) {
-          setLogged(false);
-        } else if (response.done === true) {
-          setLogged(true);
-          console.log(userResponse);
-        //   @ts-ignore
-          const userDataObj = JSON.parse(userResponse);
-          setUser(userDataObj);
-        }
+    const notificationGateway = gatewayContext?.notificationGateway;
+    useEffect(() => {
+      async function fetchData() {
+          const response = await notificationGateway?.getByUserName(user.nameUser);
+          setNotification(response?.response);
+          const newNotificationsCount = (response?.response || []).reduce((count, notification) => {
+              if (notification.isNewNotification) {
+                  return count + 1;
+              }
+              return count;
+          }, 0);
+          setNewNotification(newNotificationsCount);
       }
-      
-      useEffect(() => {
-        verifyToken();
-      }, []);
+      if (user.nameUser) {
+          fetchData();
+      }
+  }, [notificationGateway, user.nameUser]);
+  useEffect(() => {
+    const userResponse = Cookies.get("userData");
+
+    if (userResponse) {
+        try {
+            const userDataObj = JSON.parse(userResponse);
+            setUser(userDataObj);
+            CookieFactory.verifyToken(Cookies.get("jwttoken"), gatewayContext)
+                .then((response) => {
+                    if (response.done === false) {
+                        setLogged(false);
+                    } else {
+                        setLogged(true);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erro ao verificar o token:", error);
+                });
+        } catch (error) {
+            console.error("Erro ao fazer parse do JSON:", error);
+        }
+    } else {
+        setUser({ nameuser: "Usuario anônimo" });
+    }
+}, [gatewayContext]); 
 
     return(
-        <div >
+        <div>
             <nav className="nav-1">
             <Link to="/home" id="logoUrl">
                 <img src="../../public/images/coffeeplacemini.png" alt="coffeplace" id="logo"/>
                 Coffee Place
-            </Link>
-            {show === true&&
-                <form className="form-search" onSubmit={submit} onMouseLeave={()=>setShow(false)}>
-                    <input className="search-input" type="text" name="search" onChange={handleOnSearch}  placeholder="Pesquisar"/>
-
-                    <button type="submit" >Pesquisar</button>
-                </form>
-            }
-            {show === false&&
-                <div id="logoUrl" className="search" onMouseEnter={()=>setShow(true)}>
-                <BiSearchAlt id="logo"/>
-                </div>
-            }
-            
-            <Link to="#" id="logoUrl" className="search">
+            </Link>            
+            <Link to={"/complaint/"+user.email} id="logoUrl" className="search">
                 <BsTelephoneFill id="logo"/>
                 <p>Fale conosco</p>
             </Link>
-
             {logged === false&&
                 <Link to="/" id="logoUrl" className="search">
                     <FaUser id="logo"/>
@@ -84,24 +81,40 @@ function NavBar(){
                 </Link>
             }
             {logged === true &&
-                <div className="user-dash">
-                    {/* @ts-ignore */}
-                    <img className="avatar" src={localStorage.getItem("avatar")} alt="avatar" />
-                    {/* @ts-ignore */}
-                    <p>Ola {user.nameUser}</p>
-                </div>
+                /* @ts-ignore */
+                <Link to={`/saller/individual/${user.nameUser}`}>
+                    <div className="user-dash">
+                        <img className="avatar" src={localStorage.getItem("avatar")||"../../public/images/user.png"} alt="avatar" />
+                        {/* @ts-ignore */}
+                        <p>Olá: {user.nameUser}</p>
+                    </div>
+                </Link>
+            }
+            {logged&&user.isPremium ===false&&
+                <Link to={"/buy/account/"+user.email}>
+                    < MdWorkspacePremium/>Comprar conta premium
+                </Link>
             }
         </nav>
         <nav className="nav-2">
             <FaBookmark id="logo"/>
 
-            <Link to="#"><p>Produtos</p></Link>
+            <Link to="/product/all"><p>Produtos</p></Link>
 
-            <Link to="#"><p>Vendedores</p></Link>
-
-            <Link to="#"><p>Ofertas</p></Link>
-
-            <PiListFill id="logo"/>
+            <Link to="/user/all"><p>Vendedores</p></Link>
+            {/* @ts-ignore */}
+            <Link to={`/chats/${user.nameUser}`}>
+                <p>Canais</p>
+            </Link>
+            {/* @ts-ignore */}
+            <Link id="especial" to={"/notifications/"+user.nameUser}>
+                <p>Notificações & Detalhes dos pedidos</p>
+                {/* @ts-ignore */}
+                
+                {newNotification >0&&
+                    <span className="notification-badge">{newNotification}</span>
+                }
+            </Link>
 
         </nav>
         </div>

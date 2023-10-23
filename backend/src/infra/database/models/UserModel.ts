@@ -10,6 +10,11 @@ const userSchema = new Schema<userInterface>({
         type:Number,
         required:true
     },
+    isPremium:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
     email:{
         type:String,
         required:true

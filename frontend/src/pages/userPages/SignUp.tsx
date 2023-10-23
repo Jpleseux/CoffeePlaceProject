@@ -1,29 +1,32 @@
-import "../../public/layouts/signup.css"
-import Input from "../components/forms/Input"
+import "../../../public/layouts/signup.css"
+import Input from "../../components/forms/Input";
 import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom";
-import { GatewayContext } from "../gateway/gatewayContext";
+import { GatewayContext } from "../../gateway/gatewayContext";
 import {AiFillDollarCircle} from "react-icons/ai"
 import {FaShoppingCart} from "react-icons/fa"
 import { Link } from "react-router-dom"
 import {BsBoxArrowLeft, BsBoxArrowRight} from "react-icons/bs"
-import Message from "../components/interface/Message";
+import Message from "../../components/interface/Message";
 import {FaRegUserCircle} from "react-icons/fa"
+import Cookies from "js-cookie";
+import CookieFactory from "../../utils/CookieFactory";
 
 function SignUp(){
     const gatewayContext = useContext(GatewayContext);
     const navigate = useNavigate()
     const userGateway = gatewayContext?.userGateway;
 
-    const [TypeUser, setTypeUser] = useState("")
+    const [TypeUser, setTypeUser] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [user, setUser] =useState({
         name: null, age:null, email: null, password:null, 
         indentification:null, description:null, customField:null, city:null,
         state:null,neighborhood: null, cep:null, street:null, cpf:null, cnpj: null,
-        complement: null, birth: null
+        complement: null, birth: null, avatar: "../../public/images/user.png"
     })
 
-    const [image, setImage] =useState({})
+    const [image, setImage] =useState("")
 
     const [pages, setPage] =useState(1)
     const [message, setMessage] = useState({msg:"", done:true})
@@ -104,7 +107,15 @@ function SignUp(){
    }
 
     async function submit(e:any) {
+        setIsSubmitting(true)
         e.preventDefault()
+        if(Cookies.get("userData")){
+          Cookies.remove("userData")
+        }
+        if(Cookies.get("jwttoken")){
+            Cookies.remove("jwttoken")
+        }
+
         const birth= new Date(user.birth || "").getFullYear();
 
         const today = new Date().getFullYear()
@@ -129,15 +140,52 @@ function SignUp(){
                     cep: user.cep
                 }
             }
+            localStorage.setItem("avatar", jsonUser.avatar);
+            const cookieInput = {nameUser: jsonUser.name, typeUser: jsonUser.field, address:jsonUser.endereco,  email:jsonUser.email};
+            const Input = JSON.stringify(cookieInput);
+            await CookieFactory.cookieUtil("userData",Input );
             const response = await userGateway?.signUp(jsonUser);
+            await CookieFactory.cookieUtil("jwttoken", response.token)
+            
             setMessage(response)
+            if(response.done ===true){
+                setTimeout(()=>{
+                    navigate("/home")
+                }, 2000)
+            }
         }
-
-        setTimeout(()=>{
-            navigate("/home")
-        }, 2000)
-
-
+        if(TypeUser === "salesman"){
+            const jsonUser ={
+                name: user.name, 
+                avatar: image,
+                age: age,
+                password: user.password,
+                email: user.email,
+                indentification: {cnpj: user.cnpj},
+                description: user.description,
+                field: {isSalesman: true},
+                endereco: {
+                    street: user.street,
+                    state: user.state,
+                    city: user.city,
+                    neighborhood: user.neighborhood,
+                    cep: user.cep
+                }
+            }
+            localStorage.setItem("avatar", jsonUser.avatar);
+            const cookieInput = {nameUser: jsonUser.name, typeUser: jsonUser.field};
+            const Input = JSON.stringify(cookieInput);
+            await CookieFactory.cookieUtil("userData",Input );
+            const response = await userGateway?.signUp(jsonUser);
+            await CookieFactory.cookieUtil("jwttoken", response.token)
+            setIsSubmitting(false)
+            setMessage(response);
+            if(response.done ===true){
+                setTimeout(()=>{
+                    navigate("/home")
+                }, 2000)
+            }
+        }
     }
     async function defineTypeUser(TypeUser:string) {
         setTypeUser(TypeUser)
@@ -164,7 +212,7 @@ function SignUp(){
                         <p>
                         <p>Uma conta do tipo VENDEDOR tem acesso a interface de vendas, perfil próprio 
                         e possibilidade de vender seus produtos com uma taxa acessível e planos favoráveis.</p>
-                        </p>
+                        </p> 
                     </div>
                     <div className="card-right" onClick={()=> defineTypeUser("buyer")}>
                     <FaShoppingCart />
@@ -237,7 +285,7 @@ function SignUp(){
                             <p className="des">Selecione o ano em que nasceu</p>
                             <Input name="birth" type="date" handleOnChange={handleOnChange} value={user.birth ||""}/>
                         </div>
-                        <textarea name="description" placeholder="Uma descrição sobre você" onChange={handleOnChange} value={user.description ||""} >
+                        <textarea className="textarea-sign-up" name="description" placeholder="Uma descrição sobre você" onChange={handleOnChange} value={user.description ||""} >
 
                         </textarea>
                     </div>
@@ -250,7 +298,7 @@ function SignUp(){
                             <button type="button" onClick={()=> definePage(1)} className="button-next"><p>Próxima</p> <BsBoxArrowRight/></button>
                         }
                         {pages ===3&&
-                            <button type="submit" className="button-next"><p>cadastrar</p> <BsBoxArrowRight/></button>
+                            <button type="submit" className="button-next" disabled={isSubmitting}><p>cadastrar</p> <BsBoxArrowRight/></button>
                         }
                        </div>
                 </form>

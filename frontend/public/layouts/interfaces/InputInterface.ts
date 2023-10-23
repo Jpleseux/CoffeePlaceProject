@@ -4,5 +4,5 @@ export default interface InputInterface{
     name:string;
     placeholder?:string;
     handleOnChange:(e:any) =>void;
-    value?:string
+    value?:string|number|Date
 }

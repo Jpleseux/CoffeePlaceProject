@@ -8,7 +8,7 @@
     margin: 0.2% 0;
 }
 
-.input-container input:is([type="text"], [type="email"], [type="password"]){
+.input-container input:is([type="text"], [type="email"], [type="password"],[type="number"]){
     background-color: #fff;
     padding: 1rem;
     padding-right: 1rem;

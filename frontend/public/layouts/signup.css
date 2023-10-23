@@ -141,7 +141,7 @@ body::-webkit-scrollbar {
 span svg{
   width: 10%;
   height: 5%;
-}
+} 
 .container{
   z-index: 200;
   margin-left: auto;
@@ -150,7 +150,7 @@ span svg{
 .options a{
   text-decoration: none;
   color: #794028;
-}
+} 
 .option-login {
   position: static;
   text-align: center;
@@ -214,13 +214,13 @@ border-radius: 17px;
 text-align: center;
 cursor: pointer;
 transition: all 0.5s;
-display: inline-block; /* Mostra os cards em linha */
-vertical-align: top; /* Alinha os cards ao topo */
+display: inline-block; 
+vertical-align: top; 
 font-weight: bolder;
 color: black;
 }
 .card-right {
-margin-right: 3%; /* Ajuste a margem entre os cards */
+margin-right: 3%;
 margin-left: 3%;
 box-sizing: border-box;
 width: 250px;
@@ -232,8 +232,8 @@ border-radius: 17px;
 text-align: center;
 cursor: pointer;
 transition: all 0.5s;
-display: inline-block; /* Mostra os cards em linha */
-vertical-align: top; /* Alinha os cards ao topo */
+display: inline-block;
+vertical-align: top; 
 font-weight: bolder;
 color: black;
 }
@@ -300,6 +300,7 @@ color: #66AA46;
     box-sizing: border-box;
 }
 input[type="date"]{
+    width: fit-content;
     background-color: transparent;
     padding: 1%;
     position: flexbox;
@@ -410,14 +411,15 @@ input[type="date"]{
   flex-wrap: nowrap;
   display: inline-flex;
   gap: -10px;
-}
+} 
+
 .container-address-3{
   width: 103%;
 }
 .bio-form{
   width: 80%;
 }
-textarea{
+.textarea-sign-up{
   margin-top: -40px;
   padding: 2%;
   border-radius: 10px;
@@ -474,6 +476,7 @@ textarea{
     font-size: 200%;
   }
 .form-login {
+  z-index: 9;
   flex-direction: column;
 }
 .option-login{

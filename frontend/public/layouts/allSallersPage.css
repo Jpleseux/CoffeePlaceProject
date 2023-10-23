@@ -1,0 +1,53 @@
+.sallers .container-address-2 .card {
+    width: 230px;
+    height: 284px;
+    background-image: linear-gradient(144deg,#8608b4, #492fed 60%,#bd6fda);
+    border: none;
+    border-radius: 10px;
+    padding-top: 10px;
+    margin-top: 3%;
+    font-family: inherit;
+  }
+  
+  .sallers .container-address-2 .card span {
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+    font-size: 1.3em;
+  }
+  
+  .sallers .container-address-2 .card .job {
+    font-weight: 400;
+    color: white;
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 1em;
+  }
+  
+  .sallers .container-address-2 .card img {
+    width: 100px;
+    height:100px;
+    background: #e8e8e8;
+    border-radius: 100%;
+    margin-top: 20px;
+  }
+  
+  .sallers .container-address-2 .card button {
+    padding: 8px 25px;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    border: none;
+    margin-top: 5px;
+    background: #e8e8e8;
+    color: #111111;
+    font-weight: 600;
+  }
+  
+  .sallers .container-address-2 .card button:hover {
+    background: #212121;
+    color: #ffffff;
+  }

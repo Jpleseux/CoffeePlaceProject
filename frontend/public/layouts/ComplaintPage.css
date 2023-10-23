@@ -1,0 +1,30 @@
+/* ComplaintPage.css */
+.complaint-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .complaint-container  h3 {
+    font-size: 20px;
+    text-align: justify;
+    margin-bottom: 20px;
+  }
+  
+  .complaint-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .complaint-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .complaint-container .button-next{
+    width: 30%;
+    margin-left: 25%;
+}
+  .complaint-container .textarea-sign-up{
+    margin-top: .2%;
+    margin-bottom: .8%;
+  }

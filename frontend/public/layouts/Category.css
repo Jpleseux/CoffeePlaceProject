@@ -1,0 +1,36 @@
+.category-form-body {
+    border-radius: 10px;
+    display: flex;
+    background-color: #EDE2D3;
+    margin: 2% 8% 0% 8%;
+    padding: 0.5%; 
+    flex-direction: column;
+  }
+.category-form-body form {
+    display: flex;
+    flex-direction: column;
+  }
+.category-form-body input {
+    margin: 2% 6%; 
+    width: 100%;
+  }
+  .category-form-body textarea {
+    resize: none;
+    left: 100%;
+    border-radius: 10px;
+    width: 80%;
+    padding: 2%;
+    margin: 2% 5%; 
+    margin-left: 5.5%;
+  }
+  .category-form-body #back-cg{
+    margin-left: 30%;
+    
+  }
+  .category-form-body .buttons{
+    gap: 55%;
+  }
+  .category-form-body a{
+    text-decoration: none;
+  }
+  

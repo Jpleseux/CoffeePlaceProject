@@ -1,4 +1,3 @@
-// Regex para validação de string no formato CNPJ
 export const regexCNPJ = /^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$/
 
 export default function validCNPJ(value: string | number | number[] = '') {

@@ -1,0 +1,24 @@
+
+.carousel-container {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel {
+  margin-left: 5%;
+  margin-top: 2%;
+  padding: 3%;
+  border-radius: 2rem;
+  background-color: #E1CEB3;
+  width: 90%; 
+  margin-bottom: 2%;
+}
+.carousel-container h1{
+  margin-top: 2%;
+  color: #F6F0E7;
+  background-color: #300E02;
+  width: 100%;
+  padding: 3%;
+}

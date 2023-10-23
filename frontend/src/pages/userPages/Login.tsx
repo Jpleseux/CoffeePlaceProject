@@ -1,41 +1,68 @@
-import Input from "../components/forms/Input";
+import Input from "../../components/forms/Input";
 import { useState, useContext } from "react";
-import { GatewayContext } from "../gateway/gatewayContext";
-import Message from "../components/interface/Message";
-import CookieFactory from "../utils/CookieFactory";
+import { GatewayContext } from "../../gateway/gatewayContext";
+import Message from "../../components/interface/Message";
+import CookieFactory from "../../utils/CookieFactory";
 import { useNavigate } from "react-router-dom";
-import "../../public/layouts/Login.css"
+import "../../../public/layouts/Login.css"
 import {FcGoogle} from "react-icons/fc"
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Login() {
   const gatewayContext = useContext(GatewayContext);
 
   const navigate = useNavigate()
   const userGateway = gatewayContext?.userGateway;
+  const emailGateway = gatewayContext?.emailGateway;
   const [user, setUser] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({msg:"", done:true});
-
   function handleOnChange(e: any) {
     const { name, value } = e.target;
     setUser((prevState) => ({ ...prevState, [name]: value }));
   }
+  async function changePassword() {
+    // @ts-ignore 
+    const response = await emailGateway?.changePassword(user.email)
+    setMessage(response)
+  }
   
   async function submitUser(e: any) {
     e.preventDefault();
+    setIsSubmitting(true);
+  
+    if (Cookies.get("userData") !== undefined) {
+      Cookies.remove("userData", { path: "/" });
+    }
+    if (Cookies.get("jwttoken") !== undefined) {
+      Cookies.remove("jwttoken", { path: "/" });
+    }
+    console.log(user)
     const response = await userGateway?.login(user);
+    console.log(response)
     setMessage(response);
-    await CookieFactory.cookieUtil("jwttoken", response.token)
-    const cookieInput = {nameUser: response.user.name, typeUser: response.user.field}
-    localStorage.setItem("avatar", response.user.avatar)
-    const Input = JSON.stringify(cookieInput)
-    console.log(Input)
-    await CookieFactory.cookieUtil("userData",Input );
-    setTimeout(()=>{
-      if(response.done ===true){
-        navigate("/home")
-      }
-    },2000)
+  
+    if (response.done) {
+      CookieFactory.cookieUtil("jwttoken", response.token);
+      const cookieInput = {
+        nameUser: response.user.name,
+        typeUser: response.user.field,
+        address: response.user.endereco,
+        email: response.user.email,
+        isPremium:response.user.isPremium
+      };
+      console.log(response)
+      localStorage.setItem("avatar", response.user.avatar);
+      const input = JSON.stringify(cookieInput);
+      CookieFactory.cookieUtil("userData", input);
+      setTimeout(() => {
+        window.location.href = "/home"
+      },3000); 
+    }
+    if(!response){
+      setIsSubmitting(true)
+    }
   }
 
   return (
@@ -62,24 +89,23 @@ function Login() {
                 placeholder="Escreva o sua senha"
                 handleOnChange={handleOnChange}
               />
-              <button className="submit" type="submit">Entrar</button>
+              <button disabled={isSubmitting} className="submit" type="submit">Entrar</button>
             </div>
 
             {message.done ===false &&
             <div className="forgot">
-              <a href="#">Esqueceu sua senha, ou deseja redefinir sua conta?</a>
+              <button className="button-next" onClick={changePassword}>Esqueceu sua senha, ou deseja redefinir sua conta?</button>
             </div>
             }
             <div className="options">
             <h3>Não tem uma conta, cadastre-se!!!</h3>
 
             <Link to="/signup"><button className="button">Cadastre-se</button></Link>
-            <span><FcGoogle/></span>
           </div>
           </form>
       </div>
     </div>
-  );
+  ); 
 }
 
 export default Login;

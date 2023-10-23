@@ -3,10 +3,13 @@ export default interface productInterface extends Document{
     nameProduct: String,
     descriptionProduct: String,
     validateProduct:Date,
+    avaliationAmount:number,
     productAvaliation?:number,
-    dateCreation:number,
-    valorProduct: number,
+    productValue: number,
     idCategory?: String,
-    idSalesman?:String,
-    idUser?:String
+    imageProduct:String,
+    amount:number
+    nameSalesman?:String,
+    idBuyer?:String,
+    isRecomended?:Boolean
 }

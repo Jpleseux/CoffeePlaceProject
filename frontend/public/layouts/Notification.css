@@ -1,0 +1,41 @@
+/* Notification.css */
+
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .notification {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  
+  .notification p {
+    margin: 0;
+  }
+  
+  .notification-button button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .notification-button button:hover {
+    background-color: #45a049;
+  }
+.notification-container img{
+    width: 60%;
+    height: 20%;
+}

@@ -1,0 +1,130 @@
+.product-page {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2%;
+    padding: 3%;
+    border-radius: 2rem;
+    margin-bottom: 2%;
+}
+body{
+    background-color: #F6F0E7;
+}
+.product-page img {
+    width: 30%;
+    height: auto; 
+    max-height: 10%; 
+}
+.product-page h1 {
+    margin-bottom: 18%;
+    margin-left: 26%;
+    z-index: 999;
+    position: absolute;
+
+}
+.product-page .card-button{
+    margin-bottom: 11%;
+    margin-left: 4%;
+    width: 15%;
+}
+.product-page .card-button svg{
+    margin-right: 10%;
+    color: yellow;
+}
+.product-page p{
+    margin-bottom: 12%;
+}
+.product-page p span{
+    font-weight: bold;
+}
+.quantity-section {
+    background-color: #EDE2D3;
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    margin-left: 50%;
+    position: absolute;
+    z-index: 998;
+    margin-top: 5%;
+    padding: 3%;
+    border-radius: 2rem;
+}
+.quantity-section p{
+    display: flex;
+    margin-top: -13%;
+    position: absolute;
+    z-index: 997;
+    margin-left: 36%;
+}
+.quantity-section h2 {
+    width: 1000%;
+    position: static;
+}
+
+.quantity-section button {
+    padding: 1px;
+    border: none;
+    border: black 2px solid;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    width: 20%;
+    color: black;
+    border-radius: 2rem;
+}
+
+.quantity-section input {
+    width: 50%;
+    height: 200%;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.product-page   #number-input {
+    width: 50px;
+    text-align: center;
+  }
+.product-page .submit{
+    position: absolute;
+    z-index: 995;
+    margin-top: 20%;
+    width: 30%;
+    padding: 2%;
+    margin-left: 32%;
+}
+.product-page .recomended{
+    display: inline-flex;
+    background-color: #EDE2D3;
+    border-radius: 2rem;
+    margin-top: 30%;
+    margin-left: -20%;
+}
+.more-informs h5{
+    text-align: start;
+    margin: 2%;
+    font-size: 200%;
+}
+.more-informs{
+    margin-right: -4%;
+    margin-bottom: -30%;
+    background-color: #EDE2D3;
+    margin-top: 40%;
+    margin-left: -50%;
+    border-radius: 2rem;
+}
+@media (max-width: 760px) {
+    .quantity-section{
+        margin-top: 12%;
+    }
+    .product-page h1 {
+        font-size: 100%;
+    }
+    .quantity-section p{
+        margin-top: -5%;
+    }
+    .product-page .card-button{
+        width: 30%;
+    }
+}
