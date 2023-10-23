@@ -5,14 +5,12 @@ import Message from "../../components/interface/Message";
 import CookieFactory from "../../utils/CookieFactory";
 import { useNavigate } from "react-router-dom";
 import "../../../public/layouts/Login.css"
-import {FcGoogle} from "react-icons/fc"
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function Login() {
   const gatewayContext = useContext(GatewayContext);
 
-  const navigate = useNavigate()
   const userGateway = gatewayContext?.userGateway;
   const emailGateway = gatewayContext?.emailGateway;
   const [user, setUser] = useState({});

@@ -141,11 +141,7 @@ function SignUp(){
                 }
             }
             localStorage.setItem("avatar", jsonUser.avatar);
-<<<<<<< HEAD
             const cookieInput = {nameUser: jsonUser.name, typeUser: jsonUser.field, address:jsonUser.endereco,  email:jsonUser.email};
-=======
-            const cookieInput = {nameUser: jsonUser.name, typeUser: jsonUser.field};
->>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
             const Input = JSON.stringify(cookieInput);
             await CookieFactory.cookieUtil("userData",Input );
             const response = await userGateway?.signUp(jsonUser);
@@ -157,7 +153,6 @@ function SignUp(){
                     navigate("/home")
                 }, 2000)
             }
-<<<<<<< HEAD
         }
         if(TypeUser === "salesman"){
             const jsonUser ={
@@ -191,12 +186,6 @@ function SignUp(){
                 }, 2000)
             }
         }
-=======
-            
-        }
-
-
->>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
     }
     async function defineTypeUser(TypeUser:string) {
         setTypeUser(TypeUser)

@@ -6,7 +6,6 @@ export default class httpUser implements userGateway{
     }
     async login(Input:{}): Promise<any> {
         const response = await this.httpClient.post("http://localhost:3000/users/login",Input)
-        const response = await this.httpClient.post("http://localhost:3000/users/login",Input)
         return await response
     }
     async signUp(user: {}): Promise<any> {

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
 import "../../../public/layouts/Home.css";
 import Slider from "react-slick";
@@ -104,22 +103,3 @@ function Home() {
 }
 
 export default Home;
-=======
-import {useState } from "react";
-import Message from "../../components/interface/Message";
-function Home(){
-
-    const [message, setMessage] = useState<string | null>(null);
-
-        return(
-        <div className="">
-            <h1>
-
-            </h1>
-            {message&&<Message msg={"error"} timers={5000}/>}
-        </div>
-    )
-}
-
-export default Home
->>>>>>> 2ea81feb666dfe58849fe40dd1e860f38d9717d5
