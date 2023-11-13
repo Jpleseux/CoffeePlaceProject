@@ -46,5 +46,5 @@ export default class httpUser implements userGateway{
     async setUserToAdmin(email: string): Promise<any> {
         const response = await this.httpClient.get("http://localhost:3000/users/setuser/toadmin/"+email);
         return await response
-    }
+    } 
 }

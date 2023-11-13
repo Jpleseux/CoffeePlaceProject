@@ -50,7 +50,7 @@ function ProductCard({
     }
     // @ts-ignore
     if (user && user.typeUser) {
-      if(user.typeUser.isAdmin === true||user.typeUser.isSalesman ===true){
+      if(user.typeUser.isAdmin === true||user.nameUser ===  nameUser){
         setShow(true)
       }
     }
@@ -86,7 +86,6 @@ async function decrease() {
     }
     setAvaliation(parseInt(input.value));
 }
-
   async function submit(e:any){
     e.preventDefault();
     const response = await productGateway?.setNewAvaliation({avaliation:avaliation}, idProduct);

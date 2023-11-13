@@ -36,10 +36,10 @@ export default class userRepositoryDatabase implements userRepository  {
         const users = []
         const response = await UserModel.find();
         for (let user of response ){
-            if(user.field.isBuyer === true){
+            if(user.field.isSalesman !== true){
                 continue
             }
-            if(user.field.isBuyer !== true){
+            if(user.field.isSalesman === true){
                 users.push(new User(user.name, user.age, user.email, user.password, user.salt, user.indentification, user.description, user.field,user.endereco, user.avatar))
             }
         }

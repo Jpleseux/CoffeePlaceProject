@@ -272,14 +272,17 @@ function SignUp(){
                         } 
                     {pages === 3 &&
                     <div className="bio-form">
-                        
-                            
                         <div className="card-avatar">
-                            <FaRegUserCircle />
-                            <label className="label-file" htmlFor="avatar"><p>Adicionar foto</p></label>
-                            <Input name="avatar"  type="file" handleOnChange={handleOnImage} />
-
+                            {image === ""&&
+                                <FaRegUserCircle />
+                            }
+                            {image !==""&&
+                                <img src={image} alt="user Image" />
+                            }
                         </div>
+                        <div className="inputs-bio">
+                        <label className="label-file" htmlFor="avatar"><p>Adicionar foto</p></label>
+                        <Input name="avatar"  type="file" handleOnChange={handleOnImage} />
                         <Input name="name"  type="text" handleOnChange={handleOnChange} placeholder="Seu nome" value={user.name ||""}/>
                         <div className="date">
                             <p className="des">Selecione o ano em que nasceu</p>
@@ -288,6 +291,7 @@ function SignUp(){
                         <textarea className="textarea-sign-up" name="description" placeholder="Uma descrição sobre você" onChange={handleOnChange} value={user.description ||""} >
 
                         </textarea>
+                        </div>
                     </div>
                     }
                        <div id="buttons" className="buttons">

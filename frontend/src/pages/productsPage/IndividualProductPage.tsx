@@ -52,7 +52,6 @@ function IndividualProductPage() {
             setProduct(response.output);
         }
     }
-
     async function increase() {
         const input = document.getElementById("number-input") as HTMLInputElement;
         if (parseInt(input.value) >= product.amount|| parseInt(input.value) >= product.amount) {
@@ -90,18 +89,19 @@ function IndividualProductPage() {
                 buyer:{nameBuyer: buyer.nameUser, addressBuyer:buyer.address}
             }
             const response = await orderGateway.save(Input);
+            if(response.done === true){
+                console.log(response.response.response)
+                socket?.emit("teste")
+                socket?.emit("purchase", (response.response.response._id));
+            }
             setMessage(response);
             setShow(true)
             setTimeout(() => {
                 setShow(false)
             }, 5000);
-            console.log(response.response.response)
-            if(response.done === true){
-                const output = await socket?.emit("Purchase", response.response.response);
-                console.log(output)
-            }
+
             setTimeout(()=>{
-                // window.location.href = "/product/"+id
+                window.location.href = location.pathname
             }, 3000)
         }
     }
@@ -110,9 +110,6 @@ function IndividualProductPage() {
         const newSocket = io("http://localhost:4000");
         setSocket(newSocket);
 
-        return () => {
-            newSocket.disconnect();
-        };
     }, []);
 
     useEffect(() => {
@@ -121,12 +118,6 @@ function IndividualProductPage() {
                 console.log("Connected to Socket.IO");
             });
         } 
-
-        return () => {
-            if (socket) {
-                socket.disconnect();
-            }
-        };
     }, [socket]);
 
     return ( 
@@ -156,7 +147,7 @@ function IndividualProductPage() {
                     <button onClick={increase}>+</button>
                     <input type="number" id="number-input" min="1" max={product.amount + 1} readOnly />
                     <button onClick={decrease}>-</button>
-                    <button onClick={purchase} className="submit" disabled={isSubmitting}>Comprar</button>
+                    <button onClick={purchase} className="submit">Comprar</button>
                 </section>
             </div>
             }

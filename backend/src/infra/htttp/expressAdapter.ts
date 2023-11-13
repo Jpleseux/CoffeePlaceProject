@@ -47,32 +47,30 @@ export default class expressAdapter implements httpServer {
     });
     io.listen(4000);
     io.on("connection", (socket: any) => {
-      socket.on("Purchase", async (order: Order) => {
-        console.log(order)
+      socket.on("purchase",async (idOrder:any)=> {
+        const order:Order|any = await orderDatabase.getOne(idOrder);
         const cod = await generateRandomCode();
         // @ts-ignore
         const chat = new Chat(cod, "order",[{ nameUser: order.saller, role: "salesman",typeChat:"order"  }]);
+        
         const notification = new Notification("O senhor tem uma nova venda, clique no Link abaixo para entrar no chat", true, order.saller, chat._id );
         const product =  order.product;
         const newamount = await product[0].amount - order.amount;
         await productDatabase.setNewAmountFromProduct(product[0]._id,newamount);
         await notificationDatabase.save(notification);
         const newChat = await chatDatabase.save(chat);
-        // @ts-ignore
         const message = new Message("order", "O senhor tem um novo pedido", order.buyer.nameBuyer, newChat._id, order);
         const newMessage = await messageDatabase.save(message);
         io.emit("reciveMessage", newMessage);
       });
-      socket.on("teste", ()=>{
-        console.log("Deu certo")
-      })
 
       socket.on("new-message", async (msg: Message) => {
         await messageDatabase.save(msg);
         io.emit("reciveMessage", msg);
       });
 
-      socket.on("cancelOrder", async (idOrder: string, idChat: string, nameReceiver:string, order:Order) => {
+      socket.on("cancelOrder", async (idOrder: string, idChat: string, nameReceiver:string) => {
+        const order:Order|any = await orderDatabase.getOne(idOrder);
         const oldNotification = await notificationDatabase.getByChat(idChat);
         // @ts-ignore
         const product:Product = await productDatabase.getById(order.product[0]._id)
@@ -90,8 +88,8 @@ export default class expressAdapter implements httpServer {
         return "";
       });
 
-      socket.on("confirmOrder", async (buyer: string, saller: string, idChat: string, order:Order) => {
-        console.log(order)
+      socket.on("confirmOrder", async (buyer: string, saller: string, idChat: string, idOrder:string) => {
+        const order:Order|any = await orderDatabase.getOne(idOrder);
         const cod = await generateRandomCode();
         const notification = new Notification("O pedido abaixo foi confirmado pelo vendedor:", true, buyer, cod , order);
         await notificationDatabase.save(notification);
@@ -121,7 +119,7 @@ export default class expressAdapter implements httpServer {
           });
         }
       });
-    });
+    }); 
   }
 
   on(method: httpMethods, url: String, callBack: Function, middleware?: any): void {

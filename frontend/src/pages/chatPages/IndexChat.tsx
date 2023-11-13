@@ -121,17 +121,17 @@ function IndexChat() {
     setOrderId(value);
   }
 
-  async function confirmOrder(nameBuyer: string, nameSaller: string, order:any) {
+  async function confirmOrder(nameBuyer: string, nameSaller: string, idOrder:any) {
     // @ts-ignore
-    socket?.emit("confirmOrder", nameBuyer, nameSaller, id, order);
+    socket?.emit("confirmOrder", nameBuyer, nameSaller, id, idOrder);
     setTimeout(() => {
       window.location.href = '/home';
     }, 3000);
   }
 
-  async function cancelOrder(idOrder: string, buyer:string, order:any) {
+  async function cancelOrder(idOrder: string, buyer:string) {
     // @ts-ignore
-    socket?.emit("cancelOrder", idOrder, id,buyer, order );
+    socket?.emit("cancelOrder", idOrder, id,buyer );
     setTimeout(() => {
       window.location.href = '/home';
     }, 3000);
@@ -156,7 +156,7 @@ function IndexChat() {
             <div>
             {messages.length >0&&
               <div>
-                  {messages.length !=0 &&
+                  {messages.length !=0 && user.typeUser.isSalesman ===true&&order.isFinished ===false&&order.isRated !==true&&
                   <form onSubmit={submit} >
                     {/* @ts-ignore */}
                     <div className="finished-order">
@@ -197,7 +197,7 @@ function IndexChat() {
                         {message.typeMsg === "order"&& user.typeUser.isBuyer ===true&&
                           <p>{message.message}</p>
                         }
-                        {message.typeMsg === "order"&& message.order.isFinished ===true && 
+                        {message.typeMsg === "order"&& order.isFinished ===true && 
                           <h4>O pedido foi finalizado, o chat ainda está berto, e o comprador pode avaliar o produto.</h4>
                         }
                       </div>
@@ -237,10 +237,10 @@ function IndexChat() {
                       {/* @ts-ignore */}
                       <p>O valor de cada produto é {message.order.product[0].productValue} R$ e o total da compra é: {message.order.product[0].productValue * message.order.amount} R$</p>
                       {console.log(message.order)}
-                      <button type="button" className="confirm" onClick={() => confirmOrder(message.nameSender, message.order.saller, message.order)}>
+                      <button type="button" className="confirm" onClick={() => confirmOrder(message.nameSender, message.order.saller, message.order._id)}>
                         Clique para confirmar a compra
                       </button>
-                      <button type="button" className="cancel" onClick={() => cancelOrder(message.order._id,message.nameSender, message.order)}>
+                      <button type="button" className="cancel" onClick={() => cancelOrder(message.order._id,message.nameSender)}>
                         Clique aqui para cancelar a compra
                       </button>
                     </form>

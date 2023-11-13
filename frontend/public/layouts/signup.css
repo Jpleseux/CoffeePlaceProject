@@ -195,7 +195,7 @@ font-weight: 600;
 font-size: 300%;
 text-align: center;
 }
-
+ 
 
 .card-container {
 text-align: center; /* Centraliza os cards horizontalmente */
@@ -438,12 +438,14 @@ input[type="date"]{
 .date{
   transform: translate(93%, 115%); 
   display: flexbox;
-  padding-top: -50%;
+  padding-top: -20%;
   padding-bottom: -40%;
 }
-
+.inputs-bio{
+  margin-top: 30%;
+}
 .label-file {
-  transform: translate(18%, 15%); 
+  transform: translate(468%, 315%); 
   font-size: 90%;
   width: 20%;
   background-color:transparent;
@@ -451,7 +453,7 @@ input[type="date"]{
   text-align: center;
   display: block;
   cursor: pointer;
-  border: #794028 1px solid;
+  border: #794028 1px solid; 
   border-radius: 20px;
 }
 .bio-form svg{
@@ -461,9 +463,24 @@ input[type="date"]{
 }
 .card-avatar{
   text-align: center;
-  transform: translate(90%, 15%); 
+  transform: translate(80%, -15%); 
+  position: absolute;
+  z-index: 998;
+  margin-left: 45%;
+  margin-top: -5%;
 }
-
+.card-avatar svg{
+  font-size: 1500%;
+  margin-left: 10%;
+  margin-top: -50%;
+}
+.card-avatar label{
+  width: 330px;
+}
+.card-avatar img{
+  transform: translate(-200%, -50%); 
+  width: 40%;
+}
 @media (max-width: 760px) {
   .logo-mini{
     display: inline;

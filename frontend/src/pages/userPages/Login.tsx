@@ -36,11 +36,9 @@ function Login() {
     if (Cookies.get("jwttoken") !== undefined) {
       Cookies.remove("jwttoken", { path: "/" });
     }
-    console.log(user)
     const response = await userGateway?.login(user);
-    console.log(response)
     setMessage(response);
-  
+    setIsSubmitting(false)
     if (response.done) {
       CookieFactory.cookieUtil("jwttoken", response.token);
       const cookieInput = {
@@ -50,7 +48,6 @@ function Login() {
         email: response.user.email,
         isPremium:response.user.isPremium
       };
-      console.log(response)
       localStorage.setItem("avatar", response.user.avatar);
       const input = JSON.stringify(cookieInput);
       CookieFactory.cookieUtil("userData", input);
@@ -58,9 +55,7 @@ function Login() {
         window.location.href = "/home"
       },3000); 
     }
-    if(!response){
-      setIsSubmitting(true)
-    }
+    
   }
 
   return (

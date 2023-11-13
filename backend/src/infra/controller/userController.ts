@@ -10,11 +10,11 @@ export default class userController{
     constructor(repositoryFactory: useCaseFactory, userController: httpServer){
         userController.on("post",routerPrefix+"/signup", async function (params:any, body:any) {
             try {      
+                console.log(body)
                 if((await Item.validateItem(body)).done !== true){
                     return {data:{msg:"Existe um dado invalido cadastre tudo o necesario", done:false}, typeHttpResponse:400};
                 }
                 const user = await User.create(body.name,body.age,body.email, body.password, body.indentification, body.description, body.field, body.endereco, body.avatar)
-
                 const signUp = await repositoryFactory.createSignUp()
                 const verifyIsEmailExist = await repositoryFactory.verifyIsEmailExist()
                 if(await verifyIsEmailExist.execute(body.email) === true){

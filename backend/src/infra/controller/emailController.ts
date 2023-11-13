@@ -15,8 +15,8 @@ export default class emailController{
                 const token = output.token
                 const url = encodeURI(`http://localhost:5173/change/password/${encodedEmail}`)
                 const mailOptions = {
-                    from: 'joaopleseux@gmail.com',
-                    to: email,
+                    from: email,
+                    to: "joaopleseux@gmail.com",
                     subject: 'Redefinição de Senha',
                     html: `<p>Clique no botão para redefinir sua senha</p>
                         <a href="${url}"><button>Mudar senha</button></a>

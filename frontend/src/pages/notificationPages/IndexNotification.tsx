@@ -3,13 +3,15 @@ import { GatewayContext } from "../../gateway/gatewayContext";
 import { useParams } from "react-router";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
-import "../../../public/layouts/Notification.css"
+import Message from "../../components/interface/Message";
+import "../../../public/layouts/Notification.css";
 function IndexNotification() {
   const { id } = useParams();
   const gatewayContext = useContext(GatewayContext);
   const notificationGateway = gatewayContext?.notificationGateway;
   const [notifications, setNotifications] = useState([]);
   const [user, setUser] = useState({});
+  const [msg, setMsg] = useState({done:null, msg:""})
 
   async function getNotifications() {
     try {
@@ -39,7 +41,8 @@ function IndexNotification() {
   }
   async function deleteNotification(idNotification:string) {
     const response = await notificationGateway?.delete(idNotification);
-    console.log(response)
+    setMsg(response)
+    window.location.href = location.pathname
   }
 
   useEffect(() => {
@@ -79,11 +82,12 @@ function IndexNotification() {
                       <button>Clique para ir até o chat de compras</button>
                     </Link>
                   }
-                  {user.typeUser.isSalesman !== true ||user.typeUser.isAdmin === true  &&
+                  {user.nameUser === notification.receiver&&
                     <button onClick={()=>deleteNotification(notification._id)} className="button-delete">Apagar Notificação</button>
                   }
                 </div>
               ))}
+              <Message msg={msg.msg} type={msg.done} timers={3000}/>
               {notifications.length <= 0&&
                 <h1>Nenhuma notificação para o senhor</h1>
     

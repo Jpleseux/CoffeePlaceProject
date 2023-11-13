@@ -145,7 +145,6 @@ export default class productController{
             try {
                 const id = params.id;
                 const changeAvaliation = await databaseFactory.createProductRepository()
-
                 const output = await changeAvaliation.setNewAvaliation(body.avaliation, id);
                 if(output === false){
                     return {data:{msg:"Erro ao mudar avaliação", done:false}, typeHttpResponse: 400}

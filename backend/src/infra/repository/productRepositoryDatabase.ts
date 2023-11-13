@@ -99,13 +99,13 @@ export default class productRepositoryDatabase implements productRepository{
         const newTotalAvaliation = actualTotalAvaliation + newAvaliation;
         const newAvaliationAmount = product.avaliationAmount + 1;
         const newAverageAvaliation = (newTotalAvaliation / newAvaliationAmount).toFixed(1);
-        const order = await orderModel.find({"order.product[0]._id":idProduct});
-        const idOrder = order[0].id;
+        const order = await orderModel.findOne({"product._id": idProduct});
+        const idOrder = order.id;
+        console.log(idOrder)
         await orderModel.updateOne(
             { _id: idOrder },
             {
               $set: {
-                isEvaluated: true,
                 isRated:true
               }
             }
